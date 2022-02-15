@@ -48,7 +48,12 @@ Model
 How to train
 ------------------------------------
 1. Download Fluent Speech Dataset
-2. 
+2. Run slu_train.py
+
+```Python=
+# example
+python slu_train.py --data-path fluent_speech_commands_dataset
+```
 
 [Back to Top](#table-of-contents)
 

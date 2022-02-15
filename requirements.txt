@@ -1,0 +1,9 @@
+# PyTorch
+torch==1.4.0
+transformers>=4.4.2
+requests
+librosa==0.8.0
+editdistance==0.5.3
+omegaconf
+tqdm
+boto3
