@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+fluent_speech_commands_dataset
+checkpoint
