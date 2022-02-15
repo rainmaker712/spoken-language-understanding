@@ -7,3 +7,5 @@ editdistance==0.5.3
 omegaconf
 tqdm
 boto3
+pandas
+sklearn

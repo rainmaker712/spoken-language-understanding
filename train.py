@@ -2,7 +2,6 @@ import os
 import copy
 import torch
 import logging
-from pytz import timezone
 from datetime import datetime
 from omegaconf import OmegaConf
 
