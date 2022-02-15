@@ -27,7 +27,7 @@ def _add_text_parser(parser):
 def _add_slu_parser(parser):
     group = parser.add_argument_group(title="Args for slu model")
     group.add_argument("--num-intents", type=int, default=31)
-    group.add_argument("--epochs", type=int, default=2)
+    group.add_argument("--epochs", type=int, default=200)
     group.add_argument("--fp16", type=bool, default=False)
     group.add_argument("--use-scheduler", type=bool, default=True)
     group.add_argument("--learning-rate", type=float, default=2e-5)
