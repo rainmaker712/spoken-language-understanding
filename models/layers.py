@@ -28,7 +28,7 @@ class GlobalAttention(nn.Module):
 class AttentionPoolingLayer(nn.Module):
     def __init__(self, input_dim):
         super().__init__()
-        self.input_dim = input_dim  # 트랜스포머 아웃풋 1024
+        self.input_dim = input_dim
         self.layer = nn.Linear(self.input_dim, 1, bias=True)
         self.tanh = nn.Tanh()
         self.softmax = nn.Softmax(dim=-1)
@@ -40,11 +40,8 @@ class AttentionPoolingLayer(nn.Module):
     def forward(self, inputs, batch_len):
         # input size (B, enc_T, input_dim)
 
-        ## 예외처리, 이부분도 vad와 마찬가지로 synthetic데이터를 사용하면 batch_len와 텐서의 길이가 1만큼 차이가 나는데
-        ## 이유를 알 수 없기 때문에 (duet에서는 이런 문제 없엇음 ) 우선 예외처리 하였습니다. ( 꽤 많이 발생하는 듯 합니다 )
         if inputs.size(1) != torch.max(batch_len):
             batch_len = torch.tensor([x + 1 for x in batch_len])
-            # print('batch_len',batch_len)
 
         # define Mask for attention
         mask = []
@@ -60,14 +57,12 @@ class AttentionPoolingLayer(nn.Module):
             else:
                 mask += [torch.zeros(1, _len)]
         mask = torch.cat(mask, dim=0).unsqueeze(1).bool().to("cuda")
-        # mask = torch.cat(mask, dim=0).unsqueeze(1).bool()
         mask = mask.squeeze(dim=1)
 
         # set mask
         self.set_mask(mask)
 
         ## 어텐션 스코어 계산 score = w2 * tanh ( w1 * H' ), (B, enc_T)
-        ## 1 layer attention pooling
         score = (self.layer(inputs)).squeeze(dim=-1)
 
         # Masking
@@ -150,7 +145,6 @@ class TransformerASRDecoder(nn.Module):
 
         outputs = self.output_layer(x)
         attention = torch.mean(memory_attention, dim=1).detach()
-        # attention: (batch_size, query_len, key_len)
 
         return outputs, (state, attention)
 
