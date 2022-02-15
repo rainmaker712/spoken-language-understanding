@@ -70,10 +70,6 @@ class Trainer(object):
         wav_batch["audio_lengths"] = wav_batch["audio_lengths"].to(self.device)
         wav_batch["intents"] = wav_batch["intents"].to(self.device)
 
-        print(wav_batch["audio_features"].size())
-        print(wav_batch["audio_lengths"])
-        print(wav_batch["intents"])
-
         result = self.model(wav_batch)
 
         batch_size = wav_batch["audio_lengths"].size(0)
