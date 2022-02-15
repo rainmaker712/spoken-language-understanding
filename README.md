@@ -9,7 +9,6 @@ Table of Contents
 ------------------------------------
 
 <!--ts-->
-   * [Table of contents](#table-of-contents)
    * [Installation](#installation)
    * [Dataset](#dataset)
    * [Model](#model)
@@ -31,26 +30,20 @@ git clone https://github.com/rainmaker712/spoken_langauge_understanding
 pip install -r requirements.txt
 ```
 
-[Back to Top](#table-of-contents)
-
-------------------------------------
-
-[Back to Top](#table-of-contents)
-
-------------------------------------
-
-[Back to Top](#table-of-contents)
-
 ------------------------------------
 
 Dataset
 ------------------------------------
 [Fluent Command Speech Dataset, need auth](https://groups.google.com/a/fluent.ai/forum/#!forum/fluent-speech-commands)
 
+------------------------------------
+
 Model
 ------------------------------------
 
 [Back to Top](#table-of-contents)
+
+------------------------------------
 
 How to train
 ------------------------------------
