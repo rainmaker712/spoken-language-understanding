@@ -14,6 +14,7 @@ from utils.utils import init_report_dict, set_random_seed
 # SLU
 from models.model import SLU
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = int(torch.cuda.device_count())
