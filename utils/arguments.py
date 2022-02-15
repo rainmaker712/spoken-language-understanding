@@ -14,6 +14,8 @@ def get_slu_args():
 def _add_data_parser(parser):
     group = parser.add_argument_group(title="Args for dataloader")
     group.add_argument("--data-path", type=str, default="./fluent_speech_commands_dataset")
+    group.add_argument("--batch-size", type=int, default=2)
+    group.add_argument("--num-workers", type=int, default=0)
 
     return parser
 
@@ -24,12 +26,15 @@ def _add_text_parser(parser):
 
 def _add_slu_parser(parser):
     group = parser.add_argument_group(title="Args for slu model")
-    group.add_argument("--num_intents", type=int, default=30)
+    group.add_argument("--num-intents", type=int, default=30)
     group.add_argument("--epochs", type=int, default=2)
     group.add_argument("--fp16", type=bool, default=False)
-    group.add_argument("--use_scheduler", type=bool, default=True)
-    group.add_argument("--learning_rate", type=float, default=2e-5)
-    group.add_argument("--warmup_proportion", type=float, default=0.01)
-    group.add_argument("--weight_decay", type=float, default=0.01)
+    group.add_argument("--use-scheduler", type=bool, default=True)
+    group.add_argument("--learning-rate", type=float, default=2e-5)
+    group.add_argument("--warmup-proportion", type=float, default=0.01)
+    group.add_argument("--weight-decay", type=float, default=0.01)
+    group.add_argument("--feature-size", type=int, default=80)
+    group.add_argument("--output-embedding-size", type=int, default=2)
+    group.add_argument("-num-workers", type=int, default=0)
 
     return parser

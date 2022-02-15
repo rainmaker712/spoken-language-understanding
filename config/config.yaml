@@ -1,0 +1,37 @@
+feature_extractor:
+  audio-sample-rate: 16000
+  window-ms: 30
+  hop-ms: 10
+  speech-enhancement: None
+  remove-silence: False
+  feature: log-mel
+  n-fft: 512
+  n-mels: 80
+  n-mfcc: 26
+  transform_fn: None
+  cache-dir: "./cachedir"
+
+transformer_model:
+  num-encoder-layers: 6
+  num-decoder-layers: 3
+  transformer-d-model: 512
+  transformer-d-ff: 2048
+  transformer-n-heads: 8
+  joint-ctc: 0.3
+  dropout: 0.1
+  label-smoothing: False
+  decoding-sampling-rate: 0.0
+  lr-scheduler: noam
+  epochs: 100
+  batch-size: 16
+  workers: 0
+  accumulate-grad-batches: 8
+  normalize-by-batch-size: True
+  gradient-clip-val: 5
+  check-val-every-n-epoch: 10
+  enable-ctc: True
+  transformer: True
+  subsampler-size: 512
+  search: greedy
+  max-length: 80
+  attention: global
