@@ -1,7 +1,7 @@
 import os
 import torch
 from torch import nn
-from models.layers import Classifier, AttentionPoolingLayer, TransformerASREncoder, SquareCNNSubsampler, VGGSubsampler
+from models.layers import Classifier, AttentionPoolingLayer, TransformerASREncoder, SquareCNNSubsampler
 from transformers import RobertaModel, RobertaTokenizer
 
 class SLU(nn.Module):
@@ -15,10 +15,6 @@ class SLU(nn.Module):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         # Load ASR Model
-        # self.subsampler = VGGSubsampler(
-        #     in_features=feature_size
-        # )
-
         self.subsampler = SquareCNNSubsampler(
             in_features=args.feature_size,
             out_features=hparams["subsampler-size"],
@@ -26,7 +22,7 @@ class SLU(nn.Module):
         )
         
         self.transformer_encoder = TransformerASREncoder(
-                in_features=hparams["subsampler-size"],
+                in_features=self.subsampler.out_features,
                 num_layers=hparams["num-encoder-layers"],
                 d_model=hparams["transformer-d-model"],
                 d_ff=hparams["transformer-d-ff"],
@@ -43,7 +39,11 @@ class SLU(nn.Module):
         self.pooling_layer = AttentionPoolingLayer(args.output_embedding_size)
         self.classifier = Classifier(hidden_size=args.output_embedding_size, num_intent=args.num_intents)
 
-    def forward(self, features=None, feature_lengths=None, intent_labels = None, mode='train'):
+    def forward(self, input_batch, mode='train'):                
+
+        features = input_batch["audio_features"]
+        feature_lengths = input_batch["audio_lengths"]
+        intent_labels = input_batch["intents"]
 
         result = {}
 

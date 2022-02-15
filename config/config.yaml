@@ -9,7 +9,7 @@ feature_extractor:
   n-mels: 80
   n-mfcc: 26
   transform_fn: None
-  cache-dir: "./cachedir"
+  cache-dir: "/tmp"
 
 transformer_model:
   num-encoder-layers: 6

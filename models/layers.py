@@ -56,7 +56,8 @@ class AttentionPoolingLayer(nn.Module):
                 ]
             else:
                 mask += [torch.zeros(1, _len)]
-        mask = torch.cat(mask, dim=0).unsqueeze(1).bool().to("cuda")
+        # mask = torch.cat(mask, dim=0).unsqueeze(1).bool().to("cuda")
+        mask = torch.cat(mask, dim=0).unsqueeze(1).bool()
         mask = mask.squeeze(dim=1)
 
         # set mask
