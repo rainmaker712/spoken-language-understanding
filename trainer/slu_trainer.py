@@ -112,6 +112,8 @@ class Trainer(object):
         self.model.eval()
         report = TrainReport(self.report_dict)
         report.reset_dict()
+        
+        num_examples = 0
 
         predicted_intent = np.empty(0)
         target_intent = np.empty(0)
