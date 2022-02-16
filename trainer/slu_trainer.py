@@ -56,10 +56,6 @@ class Trainer(object):
                 report.reset_dict()
                 num_examples = 0
 
-            if global_step % 2000 == 0:
-                temp_model_nm = "temp_cslu"
-                self.save_checkpoint(global_step, self.model, None, None, temp_model_nm)
-
         report.reset_dict()
 
         return global_step
