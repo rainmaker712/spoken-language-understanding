@@ -1,7 +1,6 @@
 import torch
 from torch import nn
 
-
 class TokenNLLLoss(nn.Module):
     def __init__(self, ignore_index):
         super().__init__()
@@ -75,3 +74,9 @@ class CTCLoss(nn.Module):
         )
 
         return loss
+
+def rought_accuracy_metric(targets, predictions, pad_id=0, end_id=3):
+    """Calculate accuracy assuming the predictions length and the targets length are the same"""
+    mask = (targets != pad_id) & (targets != end_id)
+    correct = torch.as_tensor(targets[mask] == predictions[mask], dtype=torch.float)
+    return correct.mean()
